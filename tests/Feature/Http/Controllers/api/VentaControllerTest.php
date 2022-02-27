@@ -83,4 +83,37 @@ class VentaControllerTest extends TestCase
 ]);
                 }
 
+                public function test_show()
+                {   
+                    
+                    $this->withoutExceptionHandling();
+                    $venta = Venta::factory()->create();
+            
+                    $response=$this->getJson('/api/venta/'.$venta->id);
+                    $response->assertOk();
+                    
+                    $venta = Venta::first();
+                    $response ->assertJson([
+                        'data'=> [
+                
+                            'type'=>'venta',
+                            'componente_id'=>$venta->id,
+                            'attributes'=>[
+                                'numero_factura'=>$venta->numero_factura,
+                                'cliente'=>$venta->cliente,
+                                'telefono'=>$venta->telefono,
+                                'email'=>$venta->email,
+                                    
+                            ]
+                                 
+                        
+                        
+                            
+                                    
+                                ],
+                                
+                
+            ]);
+        }
+
 }

@@ -21,3 +21,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::post('/venta',[App\Http\Controllers\api\VentaController::class,'store']);
 Route::get('/venta',[App\Http\Controllers\api\VentaController::class,'index']);
+Route::get('/venta/{id}',[App\Http\Controllers\api\VentaController::class,'show']);
